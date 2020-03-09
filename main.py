@@ -1,14 +1,13 @@
 import os
 import json
-
-for filename in os.listdir("./jsons"):
-    with open('./jsons/' + filename) as f:
-        dest = open('./parsed/' + filename, 'a')
-
-        data = json.load(f)
-
-        person_dict = {"id": {"S": data['id']},
-                       "ip": {"S": data['ip']},
-                       "name": {"S": data['name']}
+mylist=[]
+with open('/home/toorhax/PycharmProjects/valery-json-parser/jsons/test.json') as f:
+    dest = open('./parsed/test.json', 'a')
+    data = json.load(f)
+    for x in data:
+        mydict = {"id": {"S": x['id']},
+                       "ip": {"S": x['ip']},
+                       "name": {"S": x['name']}
                        }
-        json.dump(person_dict, dest)
+        mylist.append(mydict)
+    json.dump(mylist, dest)
